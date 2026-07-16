@@ -1,15 +1,7 @@
 ```text
 >>Arya Shekhar 
-
-╔════════════════════════════════════════════════════════════╗
-║ arya@github:~$ Me                                          ║
-║                                                            ║
-║ Arya Shekhar                                               ║
-║                                                            ║
-║ C++ • Python • Computer Graphics • Embedded Systems • AI   ║
-║                                                            ║
-║ Building the Future... █                                   ║
-╚════════════════════════════════════════════════════════════╝
+                                            
+  C++ • Python • Computer Graphics • Embedded Systems • AI   
 ```
 
 ```text
