@@ -12,6 +12,10 @@
 ╚════════════════════════════════════════════════════════════╝
 ```
 
+```text
+    Self Balancing Inverted Pendulum
+```
+
 <p align="center">
   <img src="assets/InvertedPendulum.gif"
        width="700"
