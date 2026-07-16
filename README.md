@@ -1,8 +1,8 @@
 ```text
->>Arya Shekhar ;)
+>>Arya Shekhar 
 
 ╔════════════════════════════════════════════════════════════╗
-║ arya@github:~$ whoami                                      ║
+║ arya@github:~$ Me                                          ║
 ║                                                            ║
 ║ Arya Shekhar                                               ║
 ║                                                            ║
@@ -14,10 +14,10 @@
 
 <p align="center">
   <img src="assets/InvertedPendulum.gif"
-       width="850"
+       width="700"
        alt="Inverted Pendulum Simulation">
 </p>
 
 <p align="center">
-  <i>"Bringing Idead to Life."</i>
+  <i>"Bringing Ideas to Life."</i>
 </p>
