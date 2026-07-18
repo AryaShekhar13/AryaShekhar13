@@ -18,7 +18,7 @@
     Heat Seeking Missile Simulation
 ```
 
-<p align="centre">
+<p align="center">
   <img src="assets/MissileSimulation.gif"
         width="600"
         alt="Heat Seeking Missile Simulation">
