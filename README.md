@@ -18,7 +18,7 @@
 
 <table>
 <tr>
-<td valign="top"><img src="./arya-ascii.svg" width="370" alt="Arya Shekhar— ASCII portrait" /></td>
+<td valign="top"><img src="./arya.svg" width="370" alt="Arya Shekhar— ASCII portrait" /></td>
 <td valign="top"><img src="./info-card.svg" width="490" alt="Arya Shekhar — experience, stack, highlights" /></td>
 </tr>
 </table>
