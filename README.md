@@ -19,7 +19,7 @@
 <table>
 <tr>
 <td valign="top"><img src="./arya.svg" width="370" alt="Arya Shekhar— ASCII portrait" /></td>
-<td valign="top"><img src="./info-card.svg" width="490" alt="Arya Shekhar — experience, stack, highlights" /></td>
+<td valign="top"><img src="https://raw.githubusercontent.com/AryaShekhar13/AryaShekhar13/main/info-card.svg?v=1" width="490" alt="Arya Shekhar — experience, stack, highlights" /></td>
 </tr>
 </table>
 
