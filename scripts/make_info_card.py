@@ -39,15 +39,24 @@ ACCENT = "#22d3ee"
 # ("gap",)                     -> vertical space
 ROWS = [
     ("host",),
-    ("College", "Army Institute of Technology, Pune"),
-    ("Branch", "Information Technology"),
-    ("Focus", "Embedded Systems • Computer Graphics"),
-    ("Interest", "AI • Aerospace"),
+
+    ("kv", "College", "Army Institute of Technology, Pune"),
+    ("kv", "Branch", "Information Technology"),
+    ("kv", "Focus", "Embedded Systems • Computer Graphics"),
+    ("kv", "Interest", "AI • Aerospace"),
+
     ("sec", "Stack"),
-    ("Languages", "C++, Python"),
-    ("Graphics", "SFML, OpenGL"),
-    ("Embedded", "ESP32, Arduino"),
-    ("AI", "PyTorch, OpenCV"),
+
+    ("kv", "Languages", "C++, Python"),
+    ("kv", "Graphics", "SFML, OpenGL"),
+    ("kv", "Embedded", "ESP32, Arduino"),
+    ("kv", "AI", "PyTorch, OpenCV"),
+
+    ("sec", "Projects"),
+
+    ("bul", "Heat Seeking Missile Simulation"),
+    ("bul", "Self Balancing Inverted Pendulum"),
+    ("bul", "ESP32 Ring Mouse"),
 ]
 
 
@@ -67,6 +76,7 @@ def rise(inner, i):
 
 
 parts = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
     f'<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" '
     f'font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace">',
     '<defs>'
@@ -114,6 +124,6 @@ for i, row in enumerate(ROWS):
 
 parts.append("</svg>")
 svg = "".join(parts)
-with open(OUT, "w") as f:
+with open(OUT, "w", encoding="utf-8") as f:
     f.write(svg)
 print("wrote", OUT, len(svg), "bytes;", W, "x", H, "content_bottom", round(y))
