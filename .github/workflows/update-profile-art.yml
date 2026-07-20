@@ -32,8 +32,14 @@ jobs:
       - name: Render animated contribution graph SVG
         run: python scripts/generate_streak_svg.py AryaShekhar13 contrib-heatmap.svg
 
+      - name: Generate streak.svg
+        run: python scripts/generate_streak_svg.py AryaShekhar13 streak.svg
+
       - name: Commit updated art
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: refresh contribution graph [skip ci]"
-          file_pattern: "data/contributions.json contrib-heatmap.svg"
+          file_pattern: |
+            data/contributions.json 
+            contrib-heatmap.svg 
+            streak.svg
