@@ -29,10 +29,10 @@ jobs:
       - name: Scrape real contribution data (no auth needed)
         run: python scripts/fetch_contributions.py
 
-      - name: Render animated contribution graph SVG
-        run: python scripts/generate_streak_svg.py AryaShekhar13 contrib-heatmap.svg
+      - name: Render contribution heatmap
+        run: python scripts/render_heatmap_svg.py
 
-      - name: Generate streak.svg
+      - name: Render streak SVG
         run: python scripts/generate_streak_svg.py AryaShekhar13 streak.svg
 
       - name: Commit updated art
