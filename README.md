@@ -32,7 +32,7 @@
 
 [![GitHub](https://img.shields.io/badge/GitHub-AryaShekhar13-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/AryaShekhar13)
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Arya%20Shekhar-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/arya-shekhar-13b110375/)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Arya%20Shekhar-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/aryashekhar13/)
 
 [![Instagram](https://img.shields.io/badge/Instagram-aryashekhar07-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/aryashekhar07/?hl=en)
 
