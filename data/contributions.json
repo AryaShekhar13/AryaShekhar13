@@ -1,22 +1,22 @@
 {
   "username": "AryaShekhar13",
-  "generated_at": "2026-07-31T09:16:07Z",
+  "generated_at": "2026-08-01T08:33:22Z",
   "range": {
     "start": "2025-07-27",
+    "end": "2026-08-01"
+  },
+  "total_contributions": 123,
+  "active_days": 27,
+  "avg_per_active_day": 4.6,
+  "current_streak": {
+    "length": 17,
+    "start": "2026-07-15",
     "end": "2026-07-31"
   },
-  "total_contributions": 122,
-  "active_days": 26,
-  "avg_per_active_day": 4.7,
-  "current_streak": {
-    "length": 16,
-    "start": "2026-07-15",
-    "end": "2026-07-30"
-  },
   "longest_streak": {
-    "length": 16,
+    "length": 17,
     "start": "2026-07-15",
-    "end": "2026-07-30"
+    "end": "2026-07-31"
   },
   "best_day": {
     "date": "2026-07-11",
@@ -73,7 +73,11 @@
     },
     {
       "month": "2026-07",
-      "total": 115
+      "total": 116
+    },
+    {
+      "month": "2026-08",
+      "total": 0
     }
   ],
   "days": [
@@ -1555,6 +1559,10 @@
     },
     {
       "date": "2026-07-31",
+      "count": 1
+    },
+    {
+      "date": "2026-08-01",
       "count": 0
     }
   ]
