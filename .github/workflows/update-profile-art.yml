@@ -1,20 +1,30 @@
 name: Update profile art
 
-# Updates the SVG only when new code is pushed to main.
+# Refreshes the contribution heatmap/streak SVGs on a schedule,
+# on push to main, and on manual trigger.
 
-"on":
+on:
   push:
     branches:
       - main
+  schedule:
+    - cron: "0 */6 * * *"   # every 6 hours; contributions aren't tied to pushes to this repo
+  workflow_dispatch: {}
 
 permissions:
   contents: write
+
+concurrency:
+  group: profile-art
+  cancel-in-progress: true
 
 jobs:
   heatmap:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -24,6 +34,8 @@ jobs:
         run: pip install -r scripts/requirements.txt
 
       - name: Scrape real contribution data
+        env:
+          GH_TOKEN: ${{ secrets.GH_PAT }}   # needs a PAT with read:user scope; GITHUB_TOKEN won't see cross-repo activity
         run: python scripts/fetch_contributions.py
 
       - name: Render contribution heatmap
@@ -36,3 +48,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: refresh contribution graph [skip ci]"
+          file_pattern: "*.svg"
