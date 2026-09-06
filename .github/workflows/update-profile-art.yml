@@ -1,7 +1,7 @@
 name: Update profile art
 
 # Refreshes the contribution heatmap/streak SVGs on a schedule,
-# on push to main, and on manual trigger.
+# on push to main by me personally, and on manual trigger.
 
 on:
   push:
@@ -21,6 +21,9 @@ concurrency:
 jobs:
   heatmap:
     runs-on: ubuntu-latest
+    # Schedule/manual runs always fire. Push events only run if I'm the
+    # actor — blocks bots, collaborators, and the auto-commit-back itself.
+    if: github.event_name != 'push' || github.actor == 'AryaShekhar13'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -29,13 +32,14 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+          cache: pip
 
       - name: Install dependencies
         run: pip install -r scripts/requirements.txt
 
       - name: Scrape real contribution data
         env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}   # needs a PAT with read:user scope; GITHUB_TOKEN won't see cross-repo activity
+          GH_TOKEN: ${{ secrets.GH_PAT }}   # needs a PAT with read:user scope; GITHUB_TOKEN wouldn't see cross-repo activity
         run: python scripts/fetch_contributions.py
 
       - name: Render contribution heatmap
@@ -49,3 +53,5 @@ jobs:
         with:
           commit_message: "chore: refresh contribution graph [skip ci]"
           file_pattern: "*.svg"
+          commit_user_name: "github-actions[bot]"
+          commit_user_email: "github-actions[bot]@users.noreply.github.com"
