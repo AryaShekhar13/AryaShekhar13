@@ -1,14 +1,13 @@
 name: Update profile art
 
-# Refreshes the contribution heatmap/streak SVGs on a schedule,
-# on push to main by me personally, and on manual trigger.
-
 on:
   push:
     branches:
       - main
+
   schedule:
-    - cron: "0 */6 * * *"   # every 6 hours; contributions aren't tied to pushes to this repo
+    - cron: "0 */6 * * *" # Refresh every 6 hours
+
   workflow_dispatch: {}
 
 permissions:
@@ -21,15 +20,19 @@ concurrency:
 jobs:
   heatmap:
     runs-on: ubuntu-latest
-    # Schedule/manual runs always fire. Push events only run if I'm the
-    # actor — blocks bots, collaborators, and the auto-commit-back itself.
+
+    # Only allow pushes from your account to trigger the workflow.
+    # Scheduled and manual runs are always allowed.
     if: github.event_name != 'push' || github.actor == 'AryaShekhar13'
+
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.11"
           cache: pip
@@ -39,19 +42,45 @@ jobs:
 
       - name: Scrape real contribution data
         env:
-          GH_TOKEN: ${{ secrets.GH_PAT }}   # needs a PAT with read:user scope; GITHUB_TOKEN wouldn't see cross-repo activity
+          GH_TOKEN: ${{ secrets.GH_PAT }}
         run: python scripts/fetch_contributions.py
 
+      # Check whether the fetched contribution data actually changed
+      - name: Check for changes in contribution data
+        id: diff_check
+        run: |
+          DATA_FILE="data/contributions.json"
+
+          NEW_HASH=$(sha256sum "$DATA_FILE" | awk '{print $1}')
+          OLD_HASH=$(cat .last_contrib_hash 2>/dev/null || echo "")
+
+          echo "new_hash=$NEW_HASH" >> "$GITHUB_OUTPUT"
+
+          if [ "$NEW_HASH" = "$OLD_HASH" ]; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # On push/manual runs, always render.
+      # On scheduled runs, render only when contribution data changed.
       - name: Render contribution heatmap
+        if: github.event_name != 'schedule' || steps.diff_check.outputs.changed == 'true'
         run: python scripts/render_heatmap_svg.py
 
       - name: Render streak SVG
+        if: github.event_name != 'schedule' || steps.diff_check.outputs.changed == 'true'
         run: python scripts/generate_streak_svg.py AryaShekhar13 streak.svg
 
+      - name: Save new data hash
+        if: github.event_name != 'schedule' || steps.diff_check.outputs.changed == 'true'
+        run: echo "${{ steps.diff_check.outputs.new_hash }}" > .last_contrib_hash
+
       - name: Commit updated art
+        if: github.event_name != 'schedule' || steps.diff_check.outputs.changed == 'true'
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: refresh contribution graph [skip ci]"
-          file_pattern: "*.svg"
+          file_pattern: "*.svg .last_contrib_hash"
           commit_user_name: "github-actions[bot]"
           commit_user_email: "github-actions[bot]@users.noreply.github.com"
