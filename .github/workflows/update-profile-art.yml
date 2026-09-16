@@ -72,6 +72,10 @@ jobs:
         if: github.event_name != 'schedule' || steps.diff_check.outputs.changed == 'true'
         run: python scripts/generate_streak_svg.py AryaShekhar13 streak.svg
 
+      - name: Render info card
+        if: github.event_name != 'schedule' || steps.diff_check.outputs.changed == 'true'
+        run: python scripts/make_info_card.py
+
       - name: Save new data hash
         if: github.event_name != 'schedule' || steps.diff_check.outputs.changed == 'true'
         run: echo "${{ steps.diff_check.outputs.new_hash }}" > .last_contrib_hash
