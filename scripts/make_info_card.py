@@ -42,7 +42,7 @@ ROWS = [
 
     ("kv", "College", "Army Institute of Technology, Pune"),
     ("kv", "Branch", "Information Technology"),
-    ("kv", "Focus", "AI/ML • DSA • LangChain")
+    ("kv", "Focus", "AI/ML • DSA • LangChain"),
 
     ("sec", "Stack"),
 
