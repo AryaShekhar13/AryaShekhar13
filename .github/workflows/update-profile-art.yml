@@ -1,4 +1,3 @@
-```yaml
 name: Update profile art
 
 on:
@@ -7,7 +6,7 @@ on:
       - main
 
   schedule:
-    - cron: "0 0 */2 * *" # Refresh every 50 hours
+    - cron: "0 0 */2 * *" 
 
   workflow_dispatch: {}
 
@@ -85,4 +84,3 @@ jobs:
           file_pattern: "*.svg .last_contrib_hash"
           commit_user_name: "github-actions[bot]"
           commit_user_email: "github-actions[bot]@users.noreply.github.com"
-```
