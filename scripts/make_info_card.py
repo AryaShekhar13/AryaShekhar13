@@ -42,21 +42,18 @@ ROWS = [
 
     ("kv", "College", "Army Institute of Technology, Pune"),
     ("kv", "Branch", "Information Technology"),
-    ("kv", "Focus", "Embedded Systems • Computer Graphics"),
-    ("kv", "Interest", "AI • Aerospace"),
+    ("kv", "Focus", "AI/ML • DSA • LangChain")
 
     ("sec", "Stack"),
 
-    ("kv", "Languages", "C++, Python"),
+    ("kv", "Languages", "C++, Python, Java, HTML, CSS, TSX"),
     ("kv", "Graphics", "SFML, OpenGL"),
-    ("kv", "Embedded", "ESP32, Arduino"),
-    ("kv", "AI", "PyTorch, OpenCV"),
+    ("kv", "ML", "PyTorch, OpenCV"),
 
     ("sec", "Projects"),
 
     ("bul", "Heat Seeking Missile Simulation"),
-    ("bul", "Self Balancing Inverted Pendulum"),
-    ("bul", "ESP32 Ring Mouse"),
+    ("bul", "Chess Engine")
 ]
 
 
