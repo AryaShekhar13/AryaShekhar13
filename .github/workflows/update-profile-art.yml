@@ -1,13 +1,6 @@
 name: Update profile art
 
 on:
-  push:
-    branches:
-      - main
-
-  schedule:
-    - cron: "0 0 */2 * *" 
-
   workflow_dispatch: {}
 
 permissions:
@@ -20,10 +13,6 @@ concurrency:
 jobs:
   heatmap:
     runs-on: ubuntu-latest
-
-    # Only allow pushes from your account to trigger the workflow.
-    # Scheduled and manual runs are always allowed.
-    if: github.event_name != 'push' || github.actor == 'AryaShekhar13'
 
     steps:
       - name: Checkout repository
@@ -45,8 +34,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_PAT }}
         run: python scripts/fetch_contributions.py
 
-      # Check whether the fetched contribution data actually changed
-      - name: Check for changes in contribution data
+      - name: Check whether contribution data changed
         id: diff_check
         run: |
           DATA_FILE="data/contributions.json"
@@ -62,26 +50,19 @@ jobs:
             echo "changed=true" >> "$GITHUB_OUTPUT"
           fi
 
-      # On push/manual runs, always render.
-      # On scheduled runs, render only when contribution data changed.
       - name: Render contribution heatmap
-        if: github.event_name != 'schedule' || steps.diff_check.outputs.changed == 'true'
         run: python scripts/render_heatmap_svg.py
 
       - name: Render streak SVG
-        if: github.event_name != 'schedule' || steps.diff_check.outputs.changed == 'true'
         run: python scripts/generate_streak_svg.py AryaShekhar13 streak.svg
 
       - name: Render info card
-        if: github.event_name != 'schedule' || steps.diff_check.outputs.changed == 'true'
         run: python scripts/make_info_card.py
 
       - name: Save new data hash
-        if: github.event_name != 'schedule' || steps.diff_check.outputs.changed == 'true'
         run: echo "${{ steps.diff_check.outputs.new_hash }}" > .last_contrib_hash
 
       - name: Commit updated art
-        if: github.event_name != 'schedule' || steps.diff_check.outputs.changed == 'true'
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: refresh contribution graph [skip ci]"
